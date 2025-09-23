@@ -12,13 +12,13 @@ Route::get('/user', function (Request $request) {
 })->middleware('authCookie');
 
 Route::post('/login',[AuthController::class,'login']);
-
 Route::post('/register',[AuthController::class,'register']);
 
 Route::middleware('authCookie')->group(function(){ 
     Route::apiResource('categorias', CategoriaController::class)->only(['show','index']);
     Route::apiResource('turmas', TurmaController::class)->only(['show','index']);
     Route::apiResource('contagens', ContagenController::class);
+    Route::post('/logout',[AuthController::class,'logout']);
 });
 
 Route::middleware(['authCookie','NutriRole'])->group(function(){

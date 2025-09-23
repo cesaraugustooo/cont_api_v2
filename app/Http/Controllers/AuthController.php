@@ -9,6 +9,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
@@ -59,5 +60,9 @@ class AuthController extends Controller
             true
             
         );
+    }
+    public function logout(){
+        JWTAuth::setToken($this->token)->invalidate();
+        return response()->json(['message'=>'Logout efetuado com sucesso']);
     }
 }

@@ -41,7 +41,9 @@ class ContagenController extends Controller
 
             return response()->json(new ContagenResource($contagen));
         }catch(QueryException $e){
-            return response()->json(['message'=>'Turma não existente'],404);
+            if($e->getCode() == 23000){
+                return response()->json(['message'=>'Turma não existente'],404);
+            }
         }    
     }
 
@@ -66,7 +68,6 @@ class ContagenController extends Controller
 
         return response()->json(new ContagenResource($contagen));
     }
-
     /**
      * Delete the specified resource.
      */

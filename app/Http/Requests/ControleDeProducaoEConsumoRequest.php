@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TurmaRequest extends FormRequest
+class ControleDeProducaoEConsumoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,13 @@ class TurmaRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'nome_turma' => 'required|string',
-			'categorias_id' => 'required|exists:categorias,id',
+			'nome_alimento' => 'required|string',
+			'data_alimento' => 'required|date',
+			'quantidade_alimento' => 'required|decimal:8,2',
+			'medida_alimento' => 'required|string',
+			'pessoas_alimento' => 'required|int',
+			'sobra_limpa_alimento' => 'required|decimal:8,2',
+			'desperdicio_alimento' => 'required|decimal:8,2',
         ];
     }
 }

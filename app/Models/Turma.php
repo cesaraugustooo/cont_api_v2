@@ -56,9 +56,9 @@ class Turma extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function contagens()
+    public function contagen()
     {
-        return $this->hasMany(\App\Models\Contagen::class, 'id_turma', 'turmas_id_turma');
+        return $this->hasOne(\App\Models\Contagen::class, 'turmas_id');
     }
 
     /**

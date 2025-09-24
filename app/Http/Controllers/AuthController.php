@@ -24,7 +24,7 @@ class AuthController extends Controller
                     'name' => 'required|string',
                     'email' => 'required|email|unique:users',
                     'password'=>'required|max:8',
-                    'nif' => 'required|string',
+                    'nif' => 'required|string|unique:users',
                 ]);
  
                 $validate['password'] = Hash::make($validate['password']);
@@ -37,16 +37,18 @@ class AuthController extends Controller
 
     public function login(Request $request){
         $creds = $request->validate([
-                    'email' => 'required|email',
+                    'nif' => 'required|string',
                     'password'=>'required|max:8',
                 ]);
         if(Auth::attempt($creds)){
-            $user = User::where('email',$creds['email'])->first();
+            $user = User::where('nif',$creds['nif'])->first();
 
             $token = $user->createToken('api')->plainTextToken;
 
             return response()->json(['token'=>$token]);
         }
+        
+        return response()->json(['message'=>'Credenciais invalidas'],401);
     }
     public function logout(Request $request){
         auth()->logout();

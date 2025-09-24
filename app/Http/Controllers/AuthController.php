@@ -32,7 +32,6 @@ class AuthController extends Controller
 
                 return response()->json(['message'=>'Usuario criado com sucesso']);
 
-            return response()->json(['message'=>$e->getMessage()],400);
         
     }
 
@@ -41,28 +40,19 @@ class AuthController extends Controller
                     'email' => 'required|email',
                     'password'=>'required|max:8',
                 ]);
-        $token = Auth::attempt($creds);
+        if(Auth::attempt($creds)){
+            $user = User::where('email',$creds['email'])->first();
 
-        if(!$token){
-            return response()->json(['message'=>'Credenciais Invalidas'],401);
-    }
+            $token = $user->createToken('api')->plainTextToken;
 
-        return response()->json([
-            'message'=>'success',
-            'token'=>$token
-        ])->cookie(
-            'jwt_token',
-            $token,
-            60,
-            '/',
-            null,
-            false,
-            true
-            
-        );
+            return response()->json(['token'=>$token]);
+        }
     }
-    public function logout(){
-        JWTAuth::setToken($this->token)->invalidate();
+    public function logout(Request $request){
+        auth()->logout();
+
+        $request->user()->curretnAccessToken()->delete();
+
         return response()->json(['message'=>'Logout efetuado com sucesso']);
     }
 }

@@ -24,11 +24,11 @@ class ControleDeProducaoEConsumoRequest extends FormRequest
         return [
 			'nome_alimento' => 'required|string',
 			'data_alimento' => 'required|date',
-			'quantidade_alimento' => 'required|decimal:8,2',
+			'quantidade_alimento' => 'required|numeric',
 			'medida_alimento' => 'required|string',
 			'pessoas_alimento' => 'required|int',
-			'sobra_limpa_alimento' => 'required|decimal:8,2',
-			'desperdicio_alimento' => 'required|decimal:8,2',
+			'sobra_limpa_alimento' => 'required|numeric',
+			'desperdicio_alimento' => 'required|numeric',
         ];
     }
 }

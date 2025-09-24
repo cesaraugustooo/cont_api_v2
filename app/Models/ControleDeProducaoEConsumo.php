@@ -35,11 +35,11 @@ class ControleDeProducaoEConsumo extends Model
         return [
             'nome_alimento' => 'sometimes|string',
 			'data_alimento' => 'sometimes|date',
-			'quantidade_alimento' => 'sometimes|decimal:8,2',
+			'quantidade_alimento' => 'sometimes|numeric',
 			'medida_alimento' => 'sometimes|string',
 			'pessoas_alimento' => 'sometimes|int',
-			'sobra_limpa_alimento' => 'sometimes|decimal:8,2',
-			'desperdicio_alimento' => 'sometimes|decimal:8,2',
+			'sobra_limpa_alimento' => 'sometimes|numeric',
+			'desperdicio_alimento' => 'sometimes|numeric',
         ];
     }
 

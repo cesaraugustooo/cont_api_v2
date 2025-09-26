@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('necessidades_has_cronograma', function (Blueprint $table) {
-            $table->primary(['necessidades_id', 'cronograma_id']);
-            $table->foreignId('necessidades_id')->constrained();
+            $table->primary(['alunos_has_necessidades_id', 'cronograma_id']);
+            $table->foreignId('alunos_has_necessidades_id')->constrained();
             $table->foreignId('cronograma_id')->constrained();
             $table->timestamps();
             $table->softDeletes();

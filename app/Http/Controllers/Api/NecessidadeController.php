@@ -59,4 +59,8 @@ class NecessidadeController extends Controller
 
         return response()->noContent();
     }
+
+    public function relationCronograma(Request $request){
+        
+    }
 }

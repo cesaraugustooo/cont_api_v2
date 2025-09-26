@@ -6,20 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Necessidade
+ * Class Cronograma
  *
  * @property $id
- * @property $necessidade
+ * @property $dia
  * @property $created_at
  * @property $updated_at
  * @property $deleted_at
  *
- * @property AlunosHasNecessidade[] $alunosHasNecessidades
  * @property NecessidadesHasCronograma[] $necessidadesHasCronogramas
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Necessidade extends Model
+class Cronograma extends Model
 {
     use SoftDeletes;
 
@@ -30,23 +29,15 @@ class Necessidade extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['necessidade'];
+    protected $fillable = ['dia'];
 
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function alunosHasNecessidades()
-    {
-        return $this->hasMany(\App\Models\AlunosHasNecessidade::class, 'id', 'necessidades_id');
-    }
-    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function necessidadesHasCronogramas()
     {
-        return $this->belongsToMany(\App\Models\NecessidadesHasCronograma::class,'necessidades_has_cronograma','necessidades_id','cronograma_id');
+        return $this->hasMany(\App\Models\NecessidadesHasCronograma::class, 'id', 'cronograma_id');
     }
     
 }

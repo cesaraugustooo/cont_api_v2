@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CategoriaController;
 use App\Http\Controllers\Api\ContagemNeController;
 use App\Http\Controllers\Api\ContagenController;
 use App\Http\Controllers\Api\ControleDeProducaoEConsumoController;
+use App\Http\Controllers\Api\CronogramaController;
 use App\Http\Controllers\Api\NecessidadeController;
 use App\Http\Controllers\Api\TurmaController;
 use App\Http\Controllers\AuthController;
@@ -27,6 +28,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('contagens', ContagenController::class);
     Route::post('/logout',[AuthController::class,'logout']);
     Route::apiResource('contagem-nes', ContagemNeController::class);
+    Route::apiResource('cronogramas', CronogramaController::class)->only(['show','get']);
 });
 
 Route::middleware(['auth:sanctum','NutriRole'])->group(function(){
@@ -36,5 +38,6 @@ Route::middleware(['auth:sanctum','NutriRole'])->group(function(){
     Route::apiResource('alunos', AlunoController::class);
     Route::apiResource('necessidades', NecessidadeController::class);
     Route::post('/alunos/{aluno}/necessidades',[AlunoController::class,'relationNecessidades']);
+    Route::apiResource('cronogramas', CronogramaController::class)->except(['show','get']);
 });
 

@@ -62,7 +62,7 @@ class Aluno extends Model
      */
     public function necessidades()
     {
-        return $this->belongsToMany(Necessidade::class,'alunos_has_necessidades');
+        return $this->belongsToMany(Necessidade::class,'alunos_has_necessidades','alunos_id','necessidades_id');
     }
 
     

@@ -59,4 +59,16 @@ class AlunoController extends Controller
 
         return response()->noContent();
     }
+
+    public function relationNecessidades(Request $request,Aluno $aluno){
+        $validate = $request->validate([
+            'necessidades'=>'required|array'
+        ]);
+
+        foreach($validate['necessidades'] as $id){
+            $aluno->necessidades()->attach($id);
+        }
+
+        return response()->json([$aluno->load('necessidades')]);
+    }
 }

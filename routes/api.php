@@ -32,5 +32,6 @@ Route::middleware(['auth:sanctum','NutriRole'])->group(function(){
     Route::apiResource('controle_de_producao', ControleDeProducaoEConsumoController::class);
     Route::apiResource('alunos', AlunoController::class);
     Route::apiResource('necessidades', NecessidadeController::class);
+    Route::post('/alunos/{aluno}/necessidades',[AlunoController::class,'relationNecessidades']);
 });
 

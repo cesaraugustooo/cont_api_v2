@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\Api\AlunoController;
 use App\Http\Controllers\Api\CategoriaController;
+use App\Http\Controllers\Api\ContagemNeController;
 use App\Http\Controllers\Api\ContagenController;
 use App\Http\Controllers\Api\ControleDeProducaoEConsumoController;
 use App\Http\Controllers\Api\NecessidadeController;
 use App\Http\Controllers\Api\TurmaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Models\ContagemNe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +26,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('turmas', TurmaController::class)->only(['show','index']);
     Route::apiResource('contagens', ContagenController::class);
     Route::post('/logout',[AuthController::class,'logout']);
+    Route::apiResource('contagem-nes', ContagemNeController::class);
 });
 
 Route::middleware(['auth:sanctum','NutriRole'])->group(function(){

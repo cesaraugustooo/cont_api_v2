@@ -37,7 +37,7 @@ class Cronograma extends Model
      */
     public function necessidadesHasCronogramas()
     {
-        return $this->hasMany(\App\Models\NecessidadesHasCronograma::class, 'id', 'cronograma_id');
+        return $this->hasMany(\App\Models\NecessidadesHasCronograma::class, 'cronograma_id');
     }
     
 }

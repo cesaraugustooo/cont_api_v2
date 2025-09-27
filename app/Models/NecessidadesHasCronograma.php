@@ -23,6 +23,8 @@ class NecessidadesHasCronograma extends Model
 {
     use SoftDeletes;
 
+    public $table = 'necessidades_has_cronograma';
+
     protected $perPage = 20;
 
     /**
@@ -44,9 +46,9 @@ class NecessidadesHasCronograma extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function necessidade()
+    public function aluno_has_necessidade()
     {
-        return $this->belongsTo(\App\Models\Necessidade::class, 'necessidades_id', 'id');
+        return $this->belongsTo(\App\Models\AlunosHasNecessidade::class, 'alunos_has_necessidades_id');
     }
     
 }

@@ -59,4 +59,9 @@ class AlunosHasNecessidade extends Model
         return $this->hasMany(\App\Models\ContagemNe::class, 'id', 'alunos_has_necessidades_id');
     }
     
+
+     public function necessidadesHasCronogramas()
+    {
+        return $this->belongsToMany(\App\Models\Cronograma::class,'necessidades_has_cronograma','alunos_has_necessidades_id','cronograma_id');
+    }
 }

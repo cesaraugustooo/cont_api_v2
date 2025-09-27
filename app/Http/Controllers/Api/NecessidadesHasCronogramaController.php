@@ -15,6 +15,7 @@ class NecessidadesHasCronogramaController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index(Request $request)
     {
         $necessidadesHasCronogramas = NecessidadesHasCronograma::paginate();
@@ -59,4 +60,6 @@ class NecessidadesHasCronogramaController extends Controller
 
         return response()->noContent();
     }
+
+    
 }

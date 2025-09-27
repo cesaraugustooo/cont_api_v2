@@ -14,6 +14,16 @@ class CronogramaResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            "id"=>$this->id,
+            "dia"=>$this->dia,
+            "alunos"=>$this->necessidadesHasCronogramas->map(function($aluno_has){
+                return [
+                    'id'=>$aluno_has->aluno_has_necessidade->aluno->id,
+                    'nome'=>$aluno_has->aluno_has_necessidade->aluno->nome,
+                    'necessidades'=>$aluno_has->aluno_has_necessidade->aluno->necessidades
+                ];
+            })
+        ];
     }
 }

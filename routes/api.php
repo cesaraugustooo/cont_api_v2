@@ -39,5 +39,6 @@ Route::middleware(['auth:sanctum','NutriRole'])->group(function(){
     Route::apiResource('necessidades', NecessidadeController::class);
     Route::post('/alunos/{aluno}/necessidades',[AlunoController::class,'relationNecessidades']);
     Route::apiResource('cronogramas', CronogramaController::class)->except(['show','get']);
+    Route::post('/alunos/{necessidade}/dias',[NecessidadeController::class,'relationCronograma']);
 });
 

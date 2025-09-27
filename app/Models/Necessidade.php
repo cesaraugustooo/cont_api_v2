@@ -44,9 +44,5 @@ class Necessidade extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function necessidadesHasCronogramas()
-    {
-        return $this->belongsToMany(\App\Models\NecessidadesHasCronograma::class,'necessidades_has_cronograma','necessidades_id','cronograma_id');
-    }
     
 }

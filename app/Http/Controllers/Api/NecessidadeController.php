@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\NecessidadeResource;
+use App\Models\AlunosHasNecessidade;
 
 class NecessidadeController extends Controller
 {
@@ -60,7 +61,15 @@ class NecessidadeController extends Controller
         return response()->noContent();
     }
 
-    public function relationCronograma(Request $request){
-        
+    public function relationCronograma(Request $request,AlunosHasNecessidade $necessidade){
+        $validate = $request->validate([
+            'dias'=>'required|array',
+        ]);
+
+        foreach($validate['dias'] as $id){
+            $necessidade->necessidadesHasCronogramas()->attach($id);
+        }
+
+        return response()->json(['message'=>'success','data'=>$necessidade->load('necessidadesHasCronogramas')]);
     }
 }

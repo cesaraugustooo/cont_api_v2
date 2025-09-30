@@ -38,7 +38,7 @@ class NecessidadeController extends Controller
      */
     public function show(Necessidade $necessidade): JsonResponse
     {
-        return response()->json(new NecessidadeResource($necessidade));
+        return response()->json(new NecessidadeResource($necessidade->load('alunos')));
     }
 
     /**

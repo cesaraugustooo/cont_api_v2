@@ -44,5 +44,10 @@ class Necessidade extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+
+     public function alunos()
+    {
+        return $this->belongsToMany(Aluno::class,'alunos_has_necessidades','necessidades_id','alunos_id');
+    }
     
 }

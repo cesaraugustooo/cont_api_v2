@@ -53,10 +53,14 @@ class ContagemNeController extends Controller
     /**
      * Delete the specified resource.
      */
-    public function destroy(ContagemNe $contagemNe): Response
+    public function destroy(ContagemNe $contagemNe)
     {
-        $contagemNe->delete();
+        if($contagemNe->created_at->format('Y-m-d') != date('Y-m-d')){
+            return response()->json(['message'=>'Ação negada / Fora de horario permitido'],400);
+        }
 
-        return response()->noContent();
+        $contagemNe->forceDelete();
+
+        return response()->noContent(); 
     }
 }

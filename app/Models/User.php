@@ -36,6 +36,13 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $fillable = ['name', 'email','password', 'nivel_user', 'nif'];
 
-    
+    public static function updateRule(){
+        return [
+            'name' => 'sometimes|string',
+			'email' => 'sometimes|string',
+			'nivel_user' => 'sometimes',
+			'nif' => 'sometimes|string',
+        ];
+    }    
     
 }

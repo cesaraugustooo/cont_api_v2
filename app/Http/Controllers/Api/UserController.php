@@ -37,15 +37,24 @@ class UserController extends Controller
      */
     public function show(User $user): JsonResponse
     {
+        if($user->id != auth()->user()->id and auth()->user()->nivel_user < 2){
+            return response()->json(['message'=>'Permissão negada'],403);
+        }
+
         return response()->json(new UserResource($user));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserRequest $request, User $user): JsonResponse
+    public function update(Request $request, User $user): JsonResponse
     {
-        $user->update($request->validated());
+        if($user->id != auth()->user()->id and auth()->user()->nivel_user < 2){
+            return response()->json(['message'=>'Permissão negada'],403);
+        }
+
+        $user->update($request->validate(User::updateRule()));
 
         return response()->json(new UserResource($user));
     }
@@ -58,5 +67,9 @@ class UserController extends Controller
         $user->delete();
 
         return response()->noContent();
+    }
+
+    public function resetPassword(Request $request){
+
     }
 }

@@ -24,6 +24,7 @@ class AlunoRequest extends FormRequest
         return [
 			'nome' => 'required|string',
 			'genero' => 'required|string',
+            'descricao'=>'nullable|string',
 			'foto' => 'string',
 			'turmas_id' => 'required|exists:turmas,id',
 			'data_nascimento' => 'required|date',

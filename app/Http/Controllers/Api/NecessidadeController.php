@@ -9,7 +9,9 @@ use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\NecessidadeResource;
+use App\Models\Aluno;
 use App\Models\AlunosHasNecessidade;
+use App\Models\NecessidadesHasCronograma;
 
 class NecessidadeController extends Controller
 {
@@ -71,5 +73,26 @@ class NecessidadeController extends Controller
         }
 
         return response()->json(['message'=>'success','data'=>$necessidade->load('necessidadesHasCronogramas')]);
+    }
+
+    public function disableAluno(Request $request,Necessidade $necessidade){
+        $validate = $request->validate([
+            'alunos'=>'required|array'
+        ]);
+
+        $alunos = $validate['alunos'];
+        $id =   AlunosHasNecessidade::where('alunos_id',$alunos)
+        ->where('necessidades_id',$necessidade->id)
+        ->first() ?? null;
+
+        if(!$id){
+            return response()->json(['message'=>'Relação de necessidade e aluno não encontrada'],404);
+        }
+
+        NecessidadesHasCronograma::where('alunos_has_necessidades_id',$id->id)->forceDelete();
+
+        $id->forceDelete();
+
+        return response()->noContent();
     }
 }

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome', 45);
             $table->string('genero', 200);
+            $table->longText('descricao')->nullable();
             $table->enum('dia', ['Segunda', 'Terca', 'Quarta', 'Quinta', 'Sexta'])->nullable();
             $table->string('foto', 255)->nullable();
             $table->foreignId('turmas_id')->constrained();

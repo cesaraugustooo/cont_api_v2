@@ -19,11 +19,11 @@ class CronogramaResource extends JsonResource
             "dia"=>$this->dia,
             "alunos"=>$this->necessidadesHasCronogramas->map(function($aluno_has){
                 return [
-                    'id'=>$aluno_has->aluno_has_necessidade->aluno->id,
-                    'nome'=>$aluno_has->aluno_has_necessidade->aluno->nome,
-                    'necessidades'=>$aluno_has->aluno_has_necessidade->aluno->necessidades
+                    'id'=>$aluno_has->aluno_has_necessidade->aluno->id ?? null,
+                    'nome'=>$aluno_has->aluno_has_necessidade->aluno->nome?? null,
+                    'necessidade_relacionada'=>$aluno_has->aluno_has_necessidade->necessidade
                 ];
-            })
+            } ?? null)
         ];
     }
 }

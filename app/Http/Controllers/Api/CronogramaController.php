@@ -17,7 +17,7 @@ class CronogramaController extends Controller
      */
     public function index(Request $request)
     {
-        $cronogramas = Cronograma::with(['necessidadesHasCronogramas.aluno_has_necessidade.aluno.necessidades'])->get();
+        $cronogramas = Cronograma::with(['necessidadesHasCronogramas.aluno_has_necessidade.aluno.necessidades','necessidadesHasCronogramas.aluno_has_necessidade.necessidade'])->get();
 
         return CronogramaResource::collection($cronogramas);
     }

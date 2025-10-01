@@ -47,7 +47,9 @@ class Necessidade extends Model
 
      public function alunos()
     {
-        return $this->belongsToMany(Aluno::class,'alunos_has_necessidades','necessidades_id','alunos_id');
+        return $this->belongsToMany(Aluno::class,'alunos_has_necessidades','necessidades_id','alunos_id')
+        ->withPivot('id');
+        ;
     }
     
 }

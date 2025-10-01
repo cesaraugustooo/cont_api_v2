@@ -36,11 +36,12 @@ class Aluno extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['nome', 'genero', 'foto', 'turmas_id', 'data_nascimento', 'rm'];
+    protected $fillable = ['nome', 'genero','descricao', 'foto', 'turmas_id', 'data_nascimento', 'rm'];
 
     public static function updateRule(){
         return [
             'nome' => 'sometimes|string',
+            'descricao'=>'sometimes|string',
 			'genero' => 'sometimes|string',
 			'foto' => 'string',
 			'turmas_id' => 'sometimes|exists:turmas,id',

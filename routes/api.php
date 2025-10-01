@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\NecessidadeController;
 use App\Http\Controllers\Api\TurmaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FileController;
 use App\Models\ContagemNe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,5 +41,9 @@ Route::middleware(['auth:sanctum','NutriRole'])->group(function(){
     Route::post('/alunos/{aluno}/necessidades',[AlunoController::class,'relationNecessidades']);
     Route::apiResource('cronogramas', CronogramaController::class)->except(['show','get']);
     Route::post('/alunos/{necessidade}/dias',[NecessidadeController::class,'relationCronograma']);
+    Route::delete('/necessidade/{necessidade}/alunos',[NecessidadeController::class,'disableAluno']);
+    Route::post('/upload',[FileController::class,'uploadImage']);
+    Route::post('/upload/pdf',[FileController::class,'uploadPdf']);
+
 });
 

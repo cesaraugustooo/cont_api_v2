@@ -70,6 +70,11 @@ class UserController extends Controller
     }
 
     public function resetPassword(Request $request){
+        $valdiate = $request->validate([
+            'senha_atual'=>'required|string',
+            'new_password'=>'required|string',
+            'new_password_confirmation'=>'required|string'
+        ]);
 
     }
 }

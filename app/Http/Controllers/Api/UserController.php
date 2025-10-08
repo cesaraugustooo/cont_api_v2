@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -70,11 +71,30 @@ class UserController extends Controller
     }
 
     public function resetPassword(Request $request){
+        $user = auth()->user(); 
+
         $valdiate = $request->validate([
             'senha_atual'=>'required|string',
-            'new_password'=>'required|string',
-            'new_password_confirmation'=>'required|string'
+            'new_password'=>'required|string|max:8',
+            'new_password_confirmation'=>'required|string|max:8'
         ]);
 
+        $passwordConfirmation = $valdiate['new_password_confirmation'];
+        $passwordAtual = $valdiate['senha_atual'];
+        $newPassword = $valdiate['new_password'];
+
+        if(!Hash::check($passwordAtual,$user->password)){
+            return response()->json(['message'=>'Senha atual nao compativel'],401);
+        }
+
+        if($passwordConfirmation != $newPassword){
+            return response()->json(['message'=>'As senhas não coincidem']);
+        }
+
+        User::find($user->id)->update([
+            'password'=>Hash::make($newPassword)
+        ]);
+
+        return response()->json(['message'=>'Senha alterada com sucesso!']);
     }
 }

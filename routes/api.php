@@ -34,6 +34,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('cronogramas', CronogramaController::class)->only(['show','index']);
     Route::apiResource('users',UserController::class)->except(['store','destroy']);
     Route::apiResource('alunos', AlunoController::class)->only(['index','show']);
+    Route::put('/reset-senha',[UserController::class,'resetPassword']);
 });
 
 Route::middleware(['auth:sanctum','NutriRole'])->group(function(){
@@ -50,4 +51,3 @@ Route::middleware(['auth:sanctum','NutriRole'])->group(function(){
     Route::post('/upload/pdf',[FileController::class,'uploadPdf']);
     Route::apiResource('users',UserController::class)->only(['store','destroy']);
 });
-

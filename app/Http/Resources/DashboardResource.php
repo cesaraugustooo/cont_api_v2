@@ -21,8 +21,10 @@ class DashboardResource extends JsonResource
                 return[
                     'id'=>$turma->id,
                     'nome_turma'=>$turma->nome_turma,
-                    'qtd_contagem'=>$turma->contagen->qtd_contagem ?? 0
+                    'qtd_contagem'=>$turma->contagen->qtd_contagem ?? 0,
+                    'data_contagem'=>$turma->contagen->data_contagem ?? null
                 ];
+
             })
         ];
     }

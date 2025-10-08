@@ -61,35 +61,9 @@ class Turma extends Model
         return $this->hasOne(\App\Models\Contagen::class, 'turmas_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function restricoes()
+    public function contagem_nes()
     {
-        return $this->hasMany(\App\Models\Restrico::class, 'id_turma', 'turma_id');
+        return $this->hasOne(\App\Models\ContagemNe::class, 'turmas_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function tarefas()
-    {
-        return $this->hasMany(\App\Models\Tarefa::class, 'id_turma', 'id_turma');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function alunos()
-    {
-        return $this->hasMany(\App\Models\Aluno::class, 'id', 'turmas_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
 }

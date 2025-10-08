@@ -41,7 +41,7 @@ class Contagen extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['data_contagem', 'hora_contagem', 'qtd_contagem', 'turmas_id', 'users_id', 'contagenscol'];
+    protected $fillable = ['data_contagem', 'hora_contagem', 'qtd_contagem', 'turmas_id', 'users_id'];
 
 
     /**

@@ -22,7 +22,7 @@ class ContagemNeRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'alunos_has_necessidades_id' => 'required',
+			'alunos_has_necessidades_id' => 'required|int',
         ];
     }
 }

@@ -22,8 +22,8 @@ class NecessidadesHasCronogramaRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'necessidades_id' => 'required',
-			'cronograma_id' => 'required',
+			'necessidades_id' => 'required|int',
+			'cronograma_id' => 'required|int',
         ];
     }
 }

@@ -18,6 +18,10 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        if(auth()->user()->nivel_user < 2){
+            return response()->json(['message'=>'Permissão negada'],403);
+        } 
+
         $users = User::paginate();
 
         return UserResource::collection($users);

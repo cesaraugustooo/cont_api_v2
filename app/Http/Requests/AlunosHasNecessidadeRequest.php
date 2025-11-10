@@ -22,8 +22,8 @@ class AlunosHasNecessidadeRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'alunos_id' => 'required',
-			'necessidades_id' => 'required',
+			'alunos_id' => 'required|int',
+			'necessidades_id' => 'required|int',
         ];
     }
 }

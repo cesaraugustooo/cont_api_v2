@@ -2,20 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\FileService;
+use Exception;
 use Illuminate\Http\Request;
 
 class FileController extends Controller
 {
-    public function uploadImage(Request $request){
-        $request->validate([
-            'file'=>'required|max:2000',  
-        ]);
-        
-        $file = $request->file('file');
-        $name = time() . '_' . $file->getClientOriginalName();
-        $file->move(public_path('uploads'),$name);
+    public $fileService;
 
-        return response()->json(['message'=>'success','path'=>$name]);
+    public function __construct(Request $request) {
+        $this->fileService = new FileService($request);
+    }
+
+    public function uploadImage(Request $request){
+        try {
+            $name = $this->fileService->FileUpload($request);
+    
+            return response()->json(['message'=>'success','path'=>$name]);            
+        } catch (Exception $e) {
+            return response()->json(['error'=>$e->getMessage()],400);
+        }
     }
 
     public function uploadPdf(Request $request){

@@ -32,7 +32,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request): JsonResponse
     {
-        $user = User::create($request->validated());
+        $user = User::create(array_merge($request->validated(),['password'=>Hash::make($request->password)]));
 
         return response()->json(new UserResource($user));
     }

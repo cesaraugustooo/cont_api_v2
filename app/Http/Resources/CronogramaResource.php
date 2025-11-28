@@ -21,7 +21,8 @@ class CronogramaResource extends JsonResource
                 return [
                     'id'=>$aluno_has->aluno_has_necessidade->aluno->id ?? null,
                     'nome'=>$aluno_has->aluno_has_necessidade->aluno->nome?? null,
-                    'necessidade_relacionada'=>$aluno_has->aluno_has_necessidade->necessidade
+                    'necessidade_relacionada'=>$aluno_has->aluno_has_necessidade->necessidade,
+                    'alunos_has_necessidades_id'=>$aluno_has->aluno_has_necessidade->id
                 ];
             } ?? null)
         ];

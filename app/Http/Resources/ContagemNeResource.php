@@ -20,6 +20,7 @@ class ContagemNeResource extends JsonResource
             'aluno'=>[
                 'id'=>$this->alunosHasNecessidade->id,
                 'nome'=>$this->alunosHasNecessidade->aluno->nome,
+                'descricao'=>$this->alunosHasNecessidade->aluno->descricao,
                 'rm'=>$this->alunosHasNecessidade->aluno->rm,
                 'necessidade'=>$this->alunosHasNecessidade->necessidade->necessidade ?? null,
                 

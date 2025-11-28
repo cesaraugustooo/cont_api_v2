@@ -26,6 +26,7 @@ class UserRequest extends FormRequest
 			'email' => 'required|string',
 			'nivel_user' => 'required',
 			'nif' => 'required|string',
+            'password' => 'required|string'
         ];
     }
 }

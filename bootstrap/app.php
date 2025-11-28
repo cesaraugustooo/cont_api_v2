@@ -16,7 +16,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->prependToGroup('api',ForceJson::class);
         $middleware->alias([
             'authCookie'=>\App\Http\Middleware\AuthCookie::class,
-            'NutriRole'=>\App\Http\Middleware\NutriRole::class
+            'NutriRole'=>\App\Http\Middleware\NutriRole::class,
+            'DiretorRole'=> \App\Http\Middleware\DiretorRole::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

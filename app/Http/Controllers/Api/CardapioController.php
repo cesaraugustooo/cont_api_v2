@@ -38,7 +38,7 @@ class CardapioController extends Controller
                 'path' => $name
             ]);
 
-            return response()->json(['message'=>'success','path'=>public_path('uploads')."/{$name}"]);
+            return response()->json(['message'=>'success','name'=>$name]);
         } catch (Exception $e) {
             return response()->json(['error'=>$e->getMessage()],400);   
         }
@@ -56,14 +56,6 @@ class CardapioController extends Controller
         }
 
         return response()->json($cardapio);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Cardapio $cardapio)
-    {
-        //
     }
 
     /**

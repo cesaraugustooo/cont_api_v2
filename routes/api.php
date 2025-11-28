@@ -41,6 +41,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('cardapios',CardapioController::class);
     Route::apiResource('autorizados', AutorizadoController::class)->except(['update']);
     Route::apiResource('chats', ChatController::class);
+    Route::get('/getMembers',[ChatController::class,'getChatMembers']);
 });
 
 Route::middleware(['auth:sanctum','NutriRole'])->group(function(){

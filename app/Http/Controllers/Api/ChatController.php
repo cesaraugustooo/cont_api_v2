@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ChatResource;
+use App\Models\User;
 
 class ChatController extends Controller
 {
@@ -58,5 +59,11 @@ class ChatController extends Controller
         $chat->delete();
 
         return response()->noContent();
+    }
+
+    public function getChatMembers(){
+        $data = User::whereHas('chat')->get();
+
+        return $data;
     }
 }

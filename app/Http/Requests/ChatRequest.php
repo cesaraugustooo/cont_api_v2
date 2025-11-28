@@ -25,7 +25,6 @@ class ChatRequest extends FormRequest
 			'mensagem_chat' => 'required|string|max:100',
 			'visto' => 'required|in:s,n',
 			'data' => 'required|date',
-			'users_id' => 'required|int',
         ];
     }
 }

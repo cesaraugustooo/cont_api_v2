@@ -27,7 +27,7 @@ class ChatController extends Controller
      */
     public function store(ChatRequest $request): JsonResponse
     {
-        $chat = Chat::create($request->validated());
+        $chat = Chat::create(array_merge($request->validated(),["users_id"=>auth()->user()->id]));
 
         return response()->json(new ChatResource($chat));
     }

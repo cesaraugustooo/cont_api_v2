@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('titulo');
             $table->longText('conteudo');
+            $table->enum('status',['pendente','confirmado']);
             $table->timestamps();
         });
     }

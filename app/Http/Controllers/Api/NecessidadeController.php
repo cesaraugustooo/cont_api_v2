@@ -95,4 +95,16 @@ class NecessidadeController extends Controller
 
         return response()->noContent();
     }
+
+    public function deleteCronograma(Request $request, AlunosHasNecessidade $necessidade){
+        $request->validate([
+            'dias' => 'required|array'
+        ]);
+
+        foreach($request->dias as $id){
+            $necessidade->necessidadesHasCronogramas()->detach($id);
+        }
+
+        return response()->json(['message' => 'success','data'=>$necessidade->load('necessidadesHasCronogramas')]);
+    }
 }

@@ -48,6 +48,7 @@ Route::middleware(['auth:sanctum','NutriRole'])->group(function(){
     Route::post('/alunos/{aluno}/necessidades',[AlunoController::class,'relationNecessidades']);
     Route::apiResource('cronogramas', CronogramaController::class)->except(['show','index']);
     Route::post('/alunos/{necessidade}/dias',[NecessidadeController::class,'relationCronograma']);
+    Route::delete('/alunos/{necessidade}/dias',[NecessidadeController::class,'deleteCronograma']);
     Route::delete('/necessidade/{necessidade}/alunos',[NecessidadeController::class,'disableAluno']);
     Route::post('/upload',[FileController::class,'uploadImage']);
     Route::post('/upload/pdf',[FileController::class,'uploadPdf']);

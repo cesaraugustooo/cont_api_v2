@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\AlunoController;
+use App\Http\Controllers\Api\AutorizadoController;
 use App\Http\Controllers\Api\CardapioController;
 use App\Http\Controllers\Api\CategoriaController;
+use App\Http\Controllers\Api\ChatController;
 use App\Http\Controllers\Api\ContagemNeController;
 use App\Http\Controllers\Api\ContagenController;
 use App\Http\Controllers\Api\ControleDeProducaoEConsumoController;
@@ -37,6 +39,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('alunos', AlunoController::class)->only(['index','show']);
     Route::put('/reset-senha',[UserController::class,'resetPassword']);
     Route::apiResource('cardapios',CardapioController::class);
+    Route::apiResource('autorizados', AutorizadoController::class)->except(['update']);
+    Route::apiResource('chats', ChatController::class);
 });
 
 Route::middleware(['auth:sanctum','NutriRole'])->group(function(){
@@ -53,4 +57,8 @@ Route::middleware(['auth:sanctum','NutriRole'])->group(function(){
     Route::post('/upload',[FileController::class,'uploadImage']);
     Route::post('/upload/pdf',[FileController::class,'uploadPdf']);
     Route::apiResource('users',UserController::class)->only(['store','destroy']);
+});
+
+Route::middleware(['auth:sanctum','DiretorRole'])->group(function(){
+    Route::apiResource('autorizados', AutorizadoController::class)->only(['update']);
 });

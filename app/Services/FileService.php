@@ -16,12 +16,12 @@ class FileService
     public function FileUpload($request){
         try{
             $request->validate([
-                'file'=>'required|max:2000',  
+                'file'=>'required|max:20000',  
             ]);
             
             $file = $request->file('file');
             $name = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads'),$name);
+            $file->move(public_path('uploads/pdf'),$name);
 
             return $name;
         }catch(Exception $e){
